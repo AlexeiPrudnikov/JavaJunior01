@@ -87,5 +87,11 @@ public class Main {
         }
         System.out.println();
         System.out.println("==========");
+        System.out.println("Из списока сорудников с помощью стрима создать Map<String, Double> с отделами и средней зарплатой внутри отдела");
+        Map<String, Double> salary = employees.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.averagingDouble(Employee::getSalary)));
+        for (String key: salary.keySet()) {
+            System.out.println(key + ":" + salary.get(key));
+        }
     }
 }
